@@ -1,6 +1,6 @@
 const express = require('express');
 const { models } = require('mongoose');
-const { createWorkout,getWorkout,getWorkouts } = require('../controllers/workoutController');
+const { createWorkout,getWorkout,getWorkouts,deleteWorkout,updateWorkout } = require('../controllers/workoutController');
 const router = express.Router();
 
 // GET all workouts
@@ -13,12 +13,8 @@ router.get('/:id', getWorkout);
 router.post('/', createWorkout);
 
 // DELETE a workout
-router.delete('/:id', (req, res) => {
-    res.json({ message: 'Delete workout ' + req.params.id });
-});
+router.delete('/:id',deleteWorkout);
 
-router.patch('/:id', (req, res) => {
-    res.json({ message: 'Update workout ' + req.params.id });
-});
+router.patch('/:id', updateWorkout);
 
 module.exports = router;
