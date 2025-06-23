@@ -1,9 +1,11 @@
-import { useEffect, useState} from 'react';
+import { useEffect} from 'react';
+import {useWorkoutContext} from '../hooks/useWorkoutContext';
 import WorkoutDetails from '../components/WorkoutDetails';
 import Workoutform from '../components/Workoutform';
 
 const Home = () => {
-    const [workouts, setWorkouts] = useState([]);
+    // const [workouts, setWorkouts] = useState([]);
+    const {workouts, dispatch} = useWorkoutContext();
     useEffect(() => {
         const fetchWorkouts = async () => {
             try {
@@ -14,7 +16,7 @@ const Home = () => {
                 const data = await response.json();
                 console.log(data);
                 if(response.ok) {
-                    setWorkouts(data);
+                dispatch({ type: 'SET_WORKOUTS', payload: data });
                 }
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
