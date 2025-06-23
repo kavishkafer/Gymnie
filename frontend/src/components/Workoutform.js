@@ -4,6 +4,7 @@ const Workoutform =()=>{
 const [title ,setTitle] = useState('');
 const [load ,setLoad] = useState('');
 const [reps ,setReps] = useState('');
+const [error, setError] = useState(null);
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,12 +18,14 @@ const handleSubmit = async (e) => {
     });
     const json = await response.json();
     if (response.ok) {
+        setError(null);
         setTitle('');
         setLoad('');
         setReps('');
         console.log('New workout added:', json);
     } else {
         console.error('Error adding workout:', json);
+        setError(json.error || 'Failed to add workout');
     }
 };
 
@@ -48,6 +51,7 @@ return(
             value={reps} 
         />
         <button type="submit">Add Workout</button>
+        {error && <div className="error">{error}</div>}
     </form>
 );
 
