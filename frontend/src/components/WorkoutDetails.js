@@ -20,7 +20,7 @@ const WorkoutDetails = ({ workout }) => {
             <p><strong>Load:</strong> {workout.load} kg</p>
             <p><strong>Reps:</strong> {workout.reps}</p>
             <p><strong>Created at:</strong> {new Date(workout.createdAt).toLocaleDateString()}</p>
-            <span onClick={handleClick} className="material-symbols-outlined delete">delete</span>
+            <span onClick={handleClick} className="material-symbols-outlined"> delete </span>
         </div>
     );
 }
