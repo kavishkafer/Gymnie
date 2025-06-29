@@ -4,7 +4,7 @@ import WorkoutDetails from '../components/WorkoutDetails';
 import Workoutform from '../components/Workoutform';
 
 const Home = () => {
-    // const [workouts, setWorkouts] = useState([]);
+   
     const {workouts, dispatch} = useWorkoutContext();
     useEffect(() => {
         const fetchWorkouts = async () => {
