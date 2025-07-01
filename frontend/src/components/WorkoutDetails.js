@@ -6,10 +6,13 @@ const WorkoutDetails = ({ workout }) => {
             method: 'DELETE'
         });
         const json = await response.json();
+        console.log('Response:', response);
+        console.log('JSON:', json);
         if (response.ok) {
-            dispatch({ type: 'DELETE_WORKOUT', payload: json });
+            dispatch({ type: 'DELETE_WORKOUT', payload: workout });
             console.log('Workout deleted:', json);
             // Handle successful deletion (e.g., show a message, redirect, etc.)
+
         }
     };
 
@@ -20,7 +23,7 @@ const WorkoutDetails = ({ workout }) => {
             <p><strong>Load:</strong> {workout.load} kg</p>
             <p><strong>Reps:</strong> {workout.reps}</p>
             <p><strong>Created at:</strong> {new Date(workout.createdAt).toLocaleDateString()}</p>
-            <span onClick={handleClick} className="material-symbols-outlined"> delete </span>
+            <span onClick={handleClick} className="material-symbols-outlined"> delete </span>   
         </div>
     );
 }
