@@ -45,6 +45,7 @@ header a {
   padding: 20px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+   position: relative;
 }
 .workout-details h4 {
   margin: 0 0 10px 0;
@@ -55,16 +56,28 @@ header a {
   margin: 0;
   font-size: 0.9em;
   color: #555;
+ 
 }
-.workout-details span {
+/* Shared styles for both icons */
+.workout-details-buttons {
   position: absolute;
   top: 20px;
   right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.workout-details-buttons .material-symbols-outlined {
   cursor: pointer;
   background: #f1f1f1;
   padding: 6px;
   border-radius: 50%;
   color: #333;
+  font-size: 20px;
+}
+.workout-details-buttons .material-symbols-outlined:hover {
+  background: var(--primary);
+  color: #fff;
 }
 
 /* new workout form */
@@ -99,4 +112,24 @@ div.error {
 }
 input.error {
   border: 1px solid var(--error);
+}
+
+.update-form input {
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.update-form button {
+  background: var(--primary);
+  border: none;
+  padding: 8px 12px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
 }

@@ -39,6 +39,5 @@ export const WorkoutsContextProvider = ({ children }) => {
   )
 }
 
-// there is a bug Delete do not update in real time
-// it works but the page needs to be refreshed to see the changes
+
 
