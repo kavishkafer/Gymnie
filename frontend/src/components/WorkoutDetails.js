@@ -1,28 +1,25 @@
-import { useWorkoutContext } from '../hooks/useWorkoutContext';
 import { useState } from 'react';
+import { useWorkoutContext } from '../hooks/useWorkoutContext';
+
 const WorkoutDetails = ({ workout }) => {
-    const { dispatch } = useWorkoutContext();
-    const [isEditing, setIsEditing] = useState(false);
+  const { dispatch } = useWorkoutContext();
+  const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     title: workout.title,
     load: workout.load,
     reps: workout.reps
   });
-    const handleDelete = async () => {
-        const response = await fetch(`/api/workouts/${workout._id}`, {
-            method: 'DELETE'
-        });
-        const json = await response.json();
-        console.log('Response:', response);
-        console.log('JSON:', json);
-        if (response.ok) {
-            dispatch({ type: 'DELETE_WORKOUT', payload: workout });
-            console.log('Workout deleted:', json);
-            // Handle successful deletion (e.g., show a message, redirect, etc.)
 
-        }
-    };
-     const handleEditClick = () => {
+  const handleDelete = async () => {
+    const response = await fetch(`/api/workouts/${workout._id}`, {
+      method: 'DELETE'
+    });
+    if (response.ok) {
+      dispatch({ type: 'DELETE_WORKOUT', payload: workout });
+    }
+  };
+
+  const handleEditClick = () => {
     setIsEditing(prev => !prev);
   };
 
@@ -31,6 +28,15 @@ const WorkoutDetails = ({ workout }) => {
       ...prev,
       [e.target.name]: e.target.value
     }));
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    setFormData({
+      title: workout.title,
+      load: workout.load,
+      reps: workout.reps
+    });
   };
 
   const handleUpdate = async (e) => {
@@ -52,7 +58,7 @@ const WorkoutDetails = ({ workout }) => {
     }
   };
 
-     return (
+  return (
     <div className="workout-details">
       <h4>{workout.title}</h4>
       <p><strong>Load:</strong> {workout.load} kg</p>
@@ -64,32 +70,37 @@ const WorkoutDetails = ({ workout }) => {
         <span onClick={handleEditClick} className="material-symbols-outlined">edit</span>
       </div>
 
-      {isEditing && (
-        <form onSubmit={handleUpdate} className="update-form">
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            placeholder="Title"
-          />
-          <input
-            type="number"
-            name="load"
-            value={formData.load}
-            onChange={handleChange}
-            placeholder="Load (kg)"
-          />
-          <input
-            type="number"
-            name="reps"
-            value={formData.reps}
-            onChange={handleChange}
-            placeholder="Reps"
-          />
-          <button type="submit">Update</button>
-        </form>
-      )}
+      <div className={`edit-form-container ${isEditing ? 'show' : ''}`}>
+        {isEditing && (
+          <form onSubmit={handleUpdate} className="update-form">
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              placeholder="Title"
+            />
+            <input
+              type="number"
+              name="load"
+              value={formData.load}
+              onChange={handleChange}
+              placeholder="Load (kg)"
+            />
+            <input
+              type="number"
+              name="reps"
+              value={formData.reps}
+              onChange={handleChange}
+              placeholder="Reps"
+            />
+            <div className="form-buttons">
+              <button type="submit">Update</button>
+              <button type="button" className="cancel" onClick={handleCancel}>Cancel</button>
+            </div>
+          </form>
+        )}
+      </div>
     </div>
   );
 };

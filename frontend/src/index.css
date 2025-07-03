@@ -122,7 +122,12 @@ input.error {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  color: #333;
+  font-family: "Poppins";
+}
+
+.update-form .form-buttons {
+  display: flex;
+  gap: 10px;
 }
 
 .update-form button {
@@ -132,4 +137,19 @@ input.error {
   color: white;
   border-radius: 4px;
   cursor: pointer;
+  font-family: "Poppins";
+}
+
+.update-form .cancel {
+  background: #999;
+}
+.edit-form-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+.edit-form-container.show {
+  max-height: 300px;
+  opacity: 1;
 }
