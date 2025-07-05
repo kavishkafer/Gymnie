@@ -7,7 +7,7 @@ const WorkoutDetails = ({ workout }) => {
   const [formData, setFormData] = useState({
     title: workout.title,
     load: workout.load,
-    reps: workout.reps
+    reps: workout.reps,
   });
 
   const handleDelete = async () => {
@@ -43,7 +43,7 @@ const WorkoutDetails = ({ workout }) => {
     e.preventDefault();
 
     const response = await fetch(`/api/workouts/${workout._id}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
