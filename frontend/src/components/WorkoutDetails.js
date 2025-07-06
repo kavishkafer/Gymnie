@@ -8,6 +8,11 @@ const WorkoutDetails = ({ workout }) => {
     title: workout.title,
     load: workout.load,
     reps: workout.reps,
+    muscleGroup: workout.muscleGroup,
+    workoutName: workout.workoutName,
+    day: workout.day,
+    sets: workout.sets,
+    notes: workout.notes
   });
 
   const handleDelete = async () => {
@@ -35,7 +40,12 @@ const WorkoutDetails = ({ workout }) => {
     setFormData({
       title: workout.title,
       load: workout.load,
-      reps: workout.reps
+      reps: workout.reps,
+      muscleGroup: workout.muscleGroup,
+      workoutName: workout.workoutName,
+      day: workout.day,
+      sets: workout.sets,
+      notes: workout.notes
     });
   };
 
@@ -60,10 +70,17 @@ const WorkoutDetails = ({ workout }) => {
 
   return (
     <div className="workout-details">
+      {/* I want to see all details of workout and I want to categorize workouts to workout name the name */}
+
       <h4>{workout.title}</h4>
       <p><strong>Load:</strong> {workout.load} kg</p>
       <p><strong>Reps:</strong> {workout.reps}</p>
       <p><strong>Created at:</strong> {new Date(workout.createdAt).toLocaleDateString()}</p>
+      <p><strong>Muscle Group:</strong> {workout.muscleGroup}</p>
+      <p><strong>Workout Name:</strong> {workout.workoutName}</p>
+      <p><strong>Day:</strong> {workout.day}</p>
+      <p><strong>Sets:</strong> {workout.sets}</p>
+      <p><strong>Notes:</strong> {workout.notes}</p>
 
       <div className="workout-details-buttons">
         <span onClick={handleDelete} className="material-symbols-outlined">delete</span>
